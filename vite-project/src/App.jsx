@@ -6,12 +6,13 @@ import {
   HomeLayout,
   Landing,
   Newsletter,
-} from "./Pages/index";
-import "./App.css";
+} from "./Pages";
+import Nav from "./Components/Nav";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-  return (
-    <>
+  /**
+   * <>
       <About />
       <Cocktail />
       <Error></Error>
@@ -19,6 +20,16 @@ function App() {
       <Landing></Landing>
       <Newsletter></Newsletter>
     </>
+   */
+  return (
+    <Router>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<HomeLayout />}></Route>
+        <Route path="/about" element={<Newsletter />}></Route>
+        <Route path="*" element={<Error />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
