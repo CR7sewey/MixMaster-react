@@ -6,6 +6,7 @@ const Nav = () => {
     <div style={{ display: "flex", padding: "5px", gap: "5px" }}>
       <Link to="/">HOMEPAGE</Link>
       <Link to="/about">ABOUT</Link>
+      <Link to="/newsletter">NEWSLETTER</Link>
     </div>
   );
 };
