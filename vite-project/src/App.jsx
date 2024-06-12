@@ -8,19 +8,26 @@ import {
   Newsletter,
 } from "./Pages";
 import Nav from "./Components/Nav";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  createBrowserRouter,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+  },
+  {
+    path: "/",
+    element: <About />,
+  },
+]);
 
 function App() {
-  /**
-   * <>
-      <About />
-      <Cocktail />
-      <Error></Error>
-      <HomeLayout></HomeLayout>
-      <Landing></Landing>
-      <Newsletter></Newsletter>
-    </>
-   */
+  // return <RouterProvider router={router} />
   return (
     <Router>
       <Nav />
