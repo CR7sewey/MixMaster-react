@@ -1,13 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import Wrapper from "../assets/wrappers/Navbar";
 
 const Nav = () => {
   return (
-    <div style={{ display: "flex", padding: "5px", gap: "5px" }}>
-      <Link to="/">HOMEPAGE</Link>
-      <Link to="/about">ABOUT</Link>
-      <Link to="/newsletter">NEWSLETTER</Link>
-    </div>
+    <Wrapper>
+      <nav>
+        <div className="nav-center">
+          <span className="logo">MixMaster</span>
+          <div className="nav-links">
+            <NavLink to="/">HOMEPAGE</NavLink>
+            <NavLink to="/about">ABOUT</NavLink>
+            <NavLink to="/newsletter">NEWSLETTER</NavLink>
+          </div>
+        </div>
+      </nav>
+    </Wrapper>
   );
 };
 
