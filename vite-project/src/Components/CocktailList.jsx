@@ -1,5 +1,6 @@
 import React from "react";
 import Wrapper from "../assets/wrappers/CocktailList";
+import CocktailItem from "./CocktailItem";
 
 const CocktailList = ({ data }) => {
   if (!data) {
@@ -21,7 +22,7 @@ const CocktailList = ({ data }) => {
   return (
     <Wrapper>
       {formattedDrinks.map((values) => {
-        return <img src={values.image} key={values.id}></img>;
+        return <CocktailItem {...values} key={values.id} />;
       })}
     </Wrapper>
   );
