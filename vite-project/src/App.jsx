@@ -6,6 +6,7 @@ import {
   HomeLayout,
   Landing,
   Newsletter,
+  SinglePageError,
 } from "./Pages";
 import Nav from "./Components/Nav";
 import {
@@ -13,6 +14,7 @@ import {
   Route,
   Routes,
   createBrowserRouter,
+  RouterProvider,
 } from "react-router-dom";
 import { loader as landingLoader } from "./Pages/Landing";
 
@@ -22,9 +24,14 @@ const router = createBrowserRouter([
     element: <HomeLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <Landing />, loader: async () => {} }, // true to displays with HomeLayout page
+      {
+        index: true,
+        element: <Landing />,
+        errorElement: <SinglePageError />,
+        loader: landingLoader,
+      }, // true to displays with HomeLayout page
       { path: "cocktail", element: <Cocktail /> },
-      { path: "newletter", element: <Newsletter /> },
+      { path: "newsletter", element: <Newsletter /> },
       { path: "about", element: <About /> }, /// relative to the parent
     ],
   },
@@ -33,8 +40,11 @@ const router = createBrowserRouter([
 function App() {
   // return <RouterProvider router={router} />
   //https://reactrouter.com/en/main/route/route
-  return (
-    <Router>
+  return <RouterProvider router={router} />;
+  //<!--- <Route path="*" errorElement={<Error />}></Route> --->
+}
+/**
+ * <Router>
       <Nav />
       <Routes>
         <Route path="/" element={<HomeLayout />} errorElement={<Error />}>
@@ -49,8 +59,6 @@ function App() {
         </Route>
       </Routes>
     </Router>
-  );
-  //<!--- <Route path="*" errorElement={<Error />}></Route> --->
-}
+ */
 
 export default App;

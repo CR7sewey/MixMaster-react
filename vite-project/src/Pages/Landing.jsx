@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import CocktailList from "../Components/CocktailList";
 
 const fetchSearchedTerm = (searchTerm) => {
   return {
@@ -62,16 +63,7 @@ const Landing = () => {
   return (
     <div>
       <SearchForm drink={drink} setDrink={setDrink} />
-      <div>
-        {data?.drinks.map((values) => {
-          const { idDrink, strDrinkThumb } = values;
-          return (
-            <>
-              <img src={strDrinkThumb} key={idDrink}></img>;
-            </>
-          );
-        })}
-      </div>
+      <CocktailList data={data} />
     </div>
   );
 };

@@ -4,9 +4,12 @@ import Nav from "../Components/Nav";
 
 const HomeLayout = () => {
   return (
-    <section className="page">
-      <Outlet />
-    </section>
+    <>
+      <Nav />
+      <section className="page">
+        <Outlet />
+      </section>
+    </>
   );
 };
 

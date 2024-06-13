@@ -2,8 +2,9 @@ import React from "react";
 import img from "../assets/not-found.svg";
 import Wrapper from "../assets/wrappers/ErrorPage";
 import { Link, useRouteError } from "react-router-dom";
-
+console.log("aqiui 2");
 const Error = () => {
+  console.log("aqiui");
   const error = useRouteError();
   console.log(error, "aaaaaaaaaaaaaaa");
   if (error.status === 404) {
