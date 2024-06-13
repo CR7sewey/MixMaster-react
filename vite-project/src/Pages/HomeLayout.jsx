@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom"; // to displays the children in App
+import Nav from "../Components/Nav";
 
 const HomeLayout = () => {
   return (
-    <div>
-      HomeLayout
+    <section className="page">
       <Outlet />
-    </div>
+    </section>
   );
 };
 
