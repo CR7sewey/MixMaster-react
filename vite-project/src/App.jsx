@@ -14,6 +14,7 @@ import {
   Routes,
   createBrowserRouter,
 } from "react-router-dom";
+import { loader as landingLoader } from "./Pages/Landing";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     element: <HomeLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <Landing /> }, // true to displays with HomeLayout page
+      { index: true, element: <Landing />, loader: async () => {} }, // true to displays with HomeLayout page
       { path: "cocktail", element: <Cocktail /> },
       { path: "newletter", element: <Newsletter /> },
       { path: "about", element: <About /> }, /// relative to the parent
@@ -37,7 +38,11 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<HomeLayout />} errorElement={<Error />}>
-          <Route index={true} element={<Landing />}></Route>
+          <Route
+            index={true}
+            element={<Landing />}
+            loader={landingLoader}
+          ></Route>
           <Route path="/cocktail" element={<Cocktail />}></Route>
           <Route path="/newsletter" element={<Newsletter />}></Route>
           <Route path="/about" element={<About />}></Route>
