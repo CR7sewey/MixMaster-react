@@ -17,6 +17,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { loader as landingLoader } from "./Pages/Landing";
+import { loader as singleCocktailLoader } from "./Pages/Cocktail";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,12 @@ const router = createBrowserRouter([
         errorElement: <SinglePageError />,
         loader: landingLoader,
       }, // true to displays with HomeLayout page
-      { path: "cocktail", element: <Cocktail /> },
+      {
+        path: "cocktail/:id",
+        element: <Cocktail />,
+        errorElement: <SinglePageError />,
+        loader: singleCocktailLoader,
+      },
       { path: "newsletter", element: <Newsletter /> },
       { path: "about", element: <About /> }, /// relative to the parent
     ],
