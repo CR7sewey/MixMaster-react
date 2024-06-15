@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 import { loader as landingLoader } from "./Pages/Landing";
 import { loader as singleCocktailLoader } from "./Pages/Cocktail";
+import { action as newsletterFormAction } from "./Pages/Newsletter";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
         errorElement: <SinglePageError />,
         loader: singleCocktailLoader,
       },
-      { path: "newsletter", element: <Newsletter /> },
+      {
+        path: "newsletter",
+        element: <Newsletter />,
+        action: newsletterFormAction,
+      },
       { path: "about", element: <About /> }, /// relative to the parent
     ],
   },
