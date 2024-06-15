@@ -1,18 +1,32 @@
-import React from "react";
-import { useLoaderData, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLoaderData, Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import Wrapper from "../assets/wrappers/CocktailPage";
 const singleCocktailUrl =
   "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 export const loader = async ({ params }) => {
+  // put data (instead of params) and print - we get he request, context, params
   const { id } = params;
+  console.log(id, "ID");
   const { data } = await axios.get(`${singleCocktailUrl}${id}`);
   return { id, data };
 };
 
 const Cocktail = () => {
   const { id, data } = useLoaderData();
+  const navigate = useNavigate();
+  //console.log(data, "ZE maria");
+  if (!data) return <Navigate to="/" />;
+  /*useEffect(() => {
+    if (!data) {
+      navigate("/");
+
+      console.log("AQUIIUIUIU");
+    }
+    console.log("AQUI 123");
+  }, [id]);*/
+
   const {
     strDrink: name,
     strDrinkThumb: image,
@@ -32,9 +46,9 @@ const Cocktail = () => {
   return (
     <Wrapper>
       <header>
-        <Link to="/" className="btn">
+        <button onClick={() => navigate(-1)} className="btn">
           back home
-        </Link>
+        </button>
         <h3>{name}</h3>
       </header>
       <div className="drink">

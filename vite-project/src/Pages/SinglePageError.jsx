@@ -1,8 +1,8 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useRouteError } from "react-router-dom";
 
 const SinglePageError = () => {
-  const error = useLoaderData();
+  const error = useRouteError();
   return <h2>{error.message}</h2>;
 };
 
