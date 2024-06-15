@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Form, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigation } from "react-router-dom";
 
 const newsletterUrl = "https://www.course-api.com/cocktails-newsletter";
 
@@ -28,6 +29,8 @@ export const action = async ({ request }) => {
 };
 
 const Newsletter = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
   // could be <form className="form" method="POST" action=>
   return (
     <Form className="form" method="POST">
@@ -79,8 +82,9 @@ const Newsletter = () => {
         type="submit"
         className="btn btn-block"
         style={{ marginTop: "0.5rem" }}
+        disabled={isSubmitting}
       >
-        Submit
+        {isSubmitting ? "Submitting" : "Submit"}
       </button>
     </Form>
   );
