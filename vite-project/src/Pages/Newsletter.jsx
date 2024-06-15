@@ -8,7 +8,7 @@ const newsletterUrl = "https://www.course-api.com/cocktails-newsletter";
 export const action = async ({ request }) => {
   // action do form
   console.log("IN action");
-  const data = await request.formData(); // get the data
+  const data = await request.formData(); // get the data - FormData(data);
   console.log(data, "rata");
   //const formData = new FormData(data);
   const entries = [...data.values()]; //.entries
@@ -42,6 +42,7 @@ const Newsletter = () => {
           className="form-input"
           id="name"
           defaultValue="Mike"
+          required
         />
         <label
           htmlFor="lastName"
@@ -56,6 +57,7 @@ const Newsletter = () => {
           className="form-input"
           id="lastName"
           defaultValue="Carvalho"
+          required
         />
         <label
           htmlFor="email"
@@ -70,6 +72,7 @@ const Newsletter = () => {
           className="form-input"
           id="email"
           defaultValue="test@test.com"
+          required
         />
       </div>
       <button
