@@ -20,6 +20,7 @@ import { loader as landingLoader } from "./Pages/Landing";
 import { loader as singleCocktailLoader } from "./Pages/Cocktail";
 import { action as newsletterFormAction } from "./Pages/Newsletter";
 import { QueryClient } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -59,7 +60,11 @@ const router = createBrowserRouter([
 function App() {
   // return <RouterProvider router={router} />
   //https://reactrouter.com/en/main/route/route
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
   //<!--- <Route path="*" errorElement={<Error />}></Route> --->
 }
 /**
