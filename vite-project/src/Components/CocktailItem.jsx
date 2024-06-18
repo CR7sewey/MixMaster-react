@@ -4,7 +4,7 @@ import { Link, useOutletContext } from "react-router-dom";
 
 const CocktailItem = ({ image, name, glass, info, id }) => {
   const data = useOutletContext();
-  console.log(data);
+  //console.log(data);
   return (
     <Wrapper>
       <div className="img-container">
