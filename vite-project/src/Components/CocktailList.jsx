@@ -3,7 +3,7 @@ import Wrapper from "../assets/wrappers/CocktailList";
 import CocktailItem from "./CocktailItem";
 
 const CocktailList = ({ data }) => {
-  if (!data) {
+  if (data.drinks === null) {
     return (
       <h4 style={{ textAlign: "center" }}>No matching cocktails found...</h4>
     );

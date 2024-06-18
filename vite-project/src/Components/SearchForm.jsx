@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Wrapper from "../assets/wrappers/SearchForm";
-const SearchForm = ({ drink, setDrink }) => {
-  const [searchedValue, setSearchedValue] = useState("");
-  const handleSubmit = (e) => {
+import { Form, useNavigation } from "react-router-dom";
+const SearchForm = ({ drink }) => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+  /*const handleSubmit = (e) => {
     e.preventDefault();
     const searchValue = e.target.elements.searchedValue.value;
     if (!searchValue) return;
@@ -10,14 +12,21 @@ const SearchForm = ({ drink, setDrink }) => {
     setSearchedValue(searchValue);
     setDrink(searchValue);
     setSearchedValue("");
-  };
+  };*/
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit} className="form">
-        <input type="text" name="searchedValue" className="form-input" />
-        <button className="btn">Search</button>
-      </form>
+      <Form className="form">
+        <input
+          type="text"
+          name="searchedValue"
+          className="form-input"
+          defaultValue={drink}
+        />
+        <button className="btn" disabled={isSubmitting}>
+          {isSubmitting ? "Searching ..." : "Search"}
+        </button>
+      </Form>
     </Wrapper>
   );
 };

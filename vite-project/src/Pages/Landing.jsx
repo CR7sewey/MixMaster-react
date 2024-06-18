@@ -22,20 +22,24 @@ const fetchSearchedTerm = (searchTerm) => {
   };
 };
 
-export const loader = async () => {
-  const searchTerm = "";
-  return { searchTerm };
-};
+export const loader =
+  (queryClient) =>
+  async ({ request }) => {
+    const url = new URL(request.url); // we get the value from the URL from the submittted fomr (the name in the url when submitting the form)
+
+    const searchTerm = url.searchParams.get("searchedValue") || "";
+    await queryClient.ensureQueryData(fetchSearchedTerm(searchTerm));
+    return { searchTerm };
+  };
 
 const Landing = () => {
-  const data2 = useLoaderData();
-  console.log(data2);
-  const [drink, setDrink] = useState("");
-
+  const { searchTerm } = useLoaderData();
+  //const [drink, setDrink] = useState("");
+  console.log(searchTerm, "ahahahha");
   const { data, error, isLoading, isError } = useQuery(
-    fetchSearchedTerm(drink)
+    fetchSearchedTerm(searchTerm)
   );
-  console.log(data);
+  console.log(data, "oioio");
 
   if (isLoading) {
     return (
@@ -52,17 +56,11 @@ const Landing = () => {
     );
   }
 
-  if (data.length < 1) {
-    return (
-      <section>
-        <h4>No Results found...</h4>
-      </section>
-    );
-  }
-  console.log(data?.drinks[0].strDrinkThumb);
+  //console.log(data?.drinks[0].strDrinkThumb, "aaaa", data.drinks);
+  console.log(data, "aqui 123");
   return (
     <div>
-      <SearchForm drink={drink} setDrink={setDrink} />
+      <SearchForm drink={searchTerm} />
       <CocktailList data={data} />
     </div>
   );
