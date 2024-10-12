@@ -11,6 +11,7 @@ const fetchSearchedTerm = (searchTerm) => {
     // check what is returning
     queryKey: ["images", searchTerm || "all"], // important bcs images string value doesnt change, so, only refetch/rerenders when search term changes
     queryFn: async () => {
+      searchTerm = searchTerm || "a";
       const { data } = await axios.get(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`
       );
@@ -55,7 +56,6 @@ const Landing = () => {
       </section>
     );
   }
-
   //console.log(data?.drinks[0].strDrinkThumb, "aaaa", data.drinks);
   console.log(data, "aqui 123");
   return (
